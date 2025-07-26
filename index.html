@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jadwal Kelas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles */
+        .animated-dots {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .dot {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        .schedule-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        #schedule {
+            scroll-margin-top: 100px;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8cf26de8-b6cb-4a51-9e33-337b001191d7.png"
+                        alt="Logo Akademi dengan simbol buku dan pena bergaya minimalis" class="h-10 w-10 rounded-full">
+                    <span class="text-2xl font-bold text-blue-600">KelasKu</span>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#" class="py-2 px-3 text-gray-700 hover:text-blue-600">Beranda</a>
+                    <a href="#schedule" class="py-2 px-3 text-gray-700 hover:text-blue-600">Jadwal</a>
+                    <a href="#" class="py-2 px-3 text-gray-700 hover:text-blue-600">Tentang</a>
+                    <a href="#" class="py-2 px-3 text-gray-700 hover:text-blue-600">Kontak</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="menu-btn" class="text-gray-700 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4">
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Beranda</a>
+                <a href="#schedule" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Jadwal</a>
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Tentang</a>
+                <a href="#" class="block py-2 px-4 text-gray-700 hover:bg-gray-100">Kontak</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-blue-600 to-blue-400 text-white py-20 relative overflow-hidden">
+        <div class="animated-dots">
+            <div class="dot w-4 h-4" style="top:10%; left:5%"></div>
+            <div class="dot w-6 h-6" style="top:20%; left:80%"></div>
+            <div class="dot w-3 h-3" style="top:60%; left:15%"></div>
+            <div class="dot w-5 h-5" style="top:80%; left:70%"></div>
+            <div class="dot w-2 h-2" style="top:30%; left:30%"></div>
+        </div>
+        <div class="max-w-6xl mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center">
+                <!-- Text Content (2/5 width) -->
+
+                <div class="w-full md:w-2/5">
+                    <div class="w-full  text-center md:text-left mb-8 md:mb-0">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Jadwal Kelas Anda</h1>
+                        <p class="text-xl md:text-2xl mb-8">Pantau dan kelala jadwal kelas Anda dengan mudah di satu
+                            tempat
+                        </p>
+                        <div
+                            class="flex flex-col sm:flex-row justify-center md:justify-start space-y-4 sm:space-y-0 sm:space-x-4 mb-12">
+                            <a href="#schedule"
+                                class="bg-white text-blue-600 px-6 py-3 rounded-lg font-semibold hover:bg-blue-50 transition duration-300">Lihat
+                                Jadwal</a>
+                            <a href="#"
+                                class="bg-transparent border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition duration-300">Tambah
+                                Kelas</a>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap justify-center gap-6 md:gap-12 mt-8  left-0 right-0 bottom-8">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">200+</div>
+                            <p class="text-sm opacity-90">Kelas Tersedia</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">50+</div>
+                            <p class="text-sm opacity-90">Pengajar Profesional</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold mb-1">99%</div>
+                            <p class="text-sm opacity-90">Kepuasan Siswa</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <!-- Image Card (3/5 width) -->
+                <div class="w-full md:w-3/5 px-4">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 shadow-lg">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0731b1bd-238a-4a89-912d-b5c08a7afa21.png"
+                            alt="Illustration of students studying with books and digital devices"
+                            class="w-full rounded-lg">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats - position this absolutely at bottom center -->
+            <!-- <div class="flex flex-wrap justify-center gap-6 md:gap-12 mt-8  left-0 right-0 bottom-8">
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-1">200+</div>
+                    <p class="text-sm opacity-90">Kelas Tersedia</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-1">50+</div>
+                    <p class="text-sm opacity-90">Pengajar Profesional</p>
+                </div>
+                <div class="text-center">
+                    <div class="text-3xl font-bold mb-1">99%</div>
+                    <p class="text-sm opacity-90">Kepuasan Siswa</p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+    <!-- Add this to your custom styles to position the stats properly -->
+    <style>
+        /* Add this if not already present */
+        section.relative {
+            padding-bottom: 8rem;
+            /* Creates space for the absolute positioned stats */
+        }
+    </style>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="py-16 bg-gray-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Jadwal Kelas Saat Ini</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Schedule Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden schedule-card transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/791f4118-8f5a-49d2-89dd-d7753ea30af5.png"
+                                alt="Ilustrasi matematika dengan simbol aljabar dan geometri warna biru"
+                                class="h-12 w-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">Matematika Lanjut</h3>
+                                <p class="text-gray-600">Kelas XII - Sains</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <table class="w-full">
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Guru</td>
+                                        <td class="py-2 text-right text-gray-700">Budi Santoso</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Hari</td>
+                                        <td class="py-2 text-right text-gray-700">Senin & Kamis</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Waktu</td>
+                                        <td class="py-2 text-right text-gray-700">08.00 - 10.00</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Ruangan</td>
+                                        <td class="py-2 text-right text-gray-700">A201</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Detail Kelas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Schedule Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden schedule-card transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/30e3f38c-75c2-4182-b018-77e21a286702.png"
+                                alt="Ilustrasi fisika dengan simbol atom dan rumus mekanika warna merah"
+                                class="h-12 w-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">Fisika Dasar</h3>
+                                <p class="text-gray-600">Kelas X - IPA</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <table class="w-full">
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Guru</td>
+                                        <td class="py-2 text-right text-gray-700">Ani Wijaya</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Hari</td>
+                                        <td class="py-2 text-right text-gray-700">Selasa & Jumat</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Waktu</td>
+                                        <td class="py-2 text-right text-gray-700">10.00 - 12.00</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Ruangan</td>
+                                        <td class="py-2 text-right text-gray-700">B105</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Detail Kelas
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Schedule Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden schedule-card transition duration-300">
+                    <div class="p-6">
+                        <div class="flex items-center mb-4">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/59bcc106-f350-4982-ab64-4d9e81e09157.png"
+                                alt="Ilustrasi bahasa Inggris dengan buku terbuka dan bendera Inggris warna biru-merah"
+                                class="h-12 w-12 rounded-full mr-4">
+                            <div>
+                                <h3 class="text-xl font-semibold text-gray-800">Bahasa Inggris</h3>
+                                <p class="text-gray-600">Kelas XI - Semua Jurusan</p>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <table class="w-full">
+                                <tbody>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Guru</td>
+                                        <td class="py-2 text-right text-gray-700">Diana Putri</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Hari</td>
+                                        <td class="py-2 text-right text-gray-700">Rabu</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Waktu</td>
+                                        <td class="py-2 text-right text-gray-700">13.00 - 15.00</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100">
+                                        <td class="py-2 text-gray-500 font-medium">Ruangan</td>
+                                        <td class="py-2 text-right text-gray-700">C304</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <button
+                            class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Detail Kelas
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/664b8824-50c1-431b-8e04-691662c35872.png"
+                            alt="Logo kecil Akademi dengan simbol buku dan pena" class="h-8 w-8 mr-2">
+                        <span class="text-xl font-bold">KelasKu</span>
+                    </div>
+                    <p class="text-gray-300">Platform manajemen jadwal kelas modern untuk pendidikan yang lebih
+                        terorganisir.</p>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Tautan Cepat</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Beranda</a></li>
+                        <li><a href="#schedule" class="text-gray-300 hover:text-white transition">Jadwal</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Tentang</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-white transition">Kontak</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Hubungi Kami</h3>
+                    <p class="text-gray-300 mb-2">info@kelasku.edu</p>
+                    <p class="text-gray-300">+62 123 4567 890</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+                <p>© 2023 KelasKu. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Mobile Menu Script -->
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+
+</html>
